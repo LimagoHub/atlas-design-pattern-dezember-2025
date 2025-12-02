@@ -21,11 +21,22 @@ int main() {
     Spediteur<Schwein> spediteur;
     Schwein piggy{"Miss piggy",10};
     piggy.addPigTooFatListener([&metzger](Schwein *s){metzger.schlachten(s);});
+    piggy.addPigTooFatListener(
+            std::bind(&Metzger::schlachten, &metzger, std::placeholders::_1)
+    );
+
     piggy.addPigTooFatListener([&spediteur](Schwein *s){spediteur.fahren(s);});
+
+    piggy.propertyChangedEvent.subscribe([](std::any,  const std::string& propertyName)-> void {
+        std::cout << "Property " << propertyName << " hat sich geaendert\n";
+    });
+
     std::cout << "Hello, World!" << std::endl;
 
     for (int i = 0; i < 11; ++i) {
         piggy.fuettern();
     }
     return 0;
+
+
 }

@@ -8,6 +8,7 @@
 #include <vector>
 #include <functional>
 #include "Tier.h"
+#include "../propertychanged/PropertyChangedEvent.h"
 
 class Schwein: public Tier {
 
@@ -24,10 +25,15 @@ class Schwein: public Tier {
     }
 
     inline void setGewicht(int gewicht) {
+        if(Schwein::gewicht == gewicht) return;
+
         Schwein::gewicht = gewicht;
         if (gewicht > MAX_WEIGHT) firePigTooFatEvent();
+        propertyChangedEvent.fire(this, "gewicht");
     }
 public:
+    PropertyChangedEvent propertyChangedEvent;
+
     Schwein(const std::string &name, int gewicht=10) : name(name), gewicht(gewicht) {}
 
 
@@ -41,7 +47,9 @@ public:
     }
 
     void setName(const std::string &name) {
+        if(Schwein::name == name) return;
         Schwein::name = name;
+        propertyChangedEvent.fire(this, "name");
     }
 
     int getGewicht() const {

@@ -60,6 +60,21 @@ private:
     std::string name_;
     int age_;
 };
+
+
+void ereignisHandler (Person * p, const std::string& propertyName) {
+    std::cout << "Property '" << propertyName
+              << "' hat sich geaendert bei Person "
+              << p->name() << "\n";
+
+    if (propertyName == "age") {
+        std::cout << "Neues Alter: " << p->age() << "\n";
+    } else if (propertyName == "name") {
+        std::cout << "Neuer Name: " << p->name() << "\n";
+    }
+}
+
+
 int main()
 {
     Person p{"Alice", 30};
@@ -69,16 +84,8 @@ int main()
             [](std::any sender, const std::string& propertyName) {
                 // Wir *wissen*, dass der Sender ein Person* ist:
                 auto personPtr = std::any_cast<Person*>(sender);
+                ereignisHandler(personPtr, propertyName);
 
-                std::cout << "Property '" << propertyName
-                          << "' hat sich geaendert bei Person "
-                          << personPtr->name() << "\n";
-
-                if (propertyName == "age") {
-                    std::cout << "Neues Alter: " << personPtr->age() << "\n";
-                } else if (propertyName == "name") {
-                    std::cout << "Neuer Name: " << personPtr->name() << "\n";
-                }
             }
     );
     // Änderungen auslösen
