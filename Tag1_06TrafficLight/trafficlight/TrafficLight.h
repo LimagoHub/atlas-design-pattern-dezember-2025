@@ -12,8 +12,8 @@
 namespace trafficlight::state {
     class GreenState;
     class RedState;
-
-
+    class OffState;
+    class AbstractTrafficLightColorState;
     class TrafficLightState;
 
 }
@@ -31,11 +31,15 @@ namespace trafficlight {
 
         std::string getColor();
         void nextColor();
+        void switchOn();
+        void switchOff();
 
 
 
         friend class trafficlight::state::RedState;
         friend class trafficlight::state::GreenState;
+        friend class trafficlight::state::OffState;
+        friend class trafficlight::state::AbstractTrafficLightColorState;
 
 
     };
