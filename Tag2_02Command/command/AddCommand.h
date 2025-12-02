@@ -1,33 +1,30 @@
 //
-// Created by JoachimWagner on 02.12.2025.
+// Created by JoachimWagner on 01.07.2025.
 //
 
 #pragma once
-#include "Command.h"
+#include "AbstractCommand.h"
 #include "../math/Calculator.h"
 namespace command {
+    using Calc=math::Calculator;
 
-    class AddCommand: public Command{
+    class AddCommand:public AbstractCommand{
+
     private:
         double value;
+
     public:
+        AddCommand()=default;
         ~AddCommand() override = default;
 
-        auto parse(const StringVector &tokens) -> void override {
+        auto parse(const StringVector &tokens)->void override {
             value = std::stod(tokens[1]);
         }
 
-        auto execute() -> void override {
-            math::Calculator::getInstance()->add(value);
+        void doAction() override {
+            Calc::getInstance()->add(value);
         }
 
-        auto undo() -> void override {
-            math::Calculator::getInstance()->sub(value);
-        }
-
-        auto isQuery() -> bool override {
-            return false;
-        }
     };
 
 } // command

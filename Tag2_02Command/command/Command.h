@@ -1,14 +1,18 @@
 //
-// Created by JoachimWagner on 02.12.2025.
+// Created by JoachimWagner on 01.07.2025.
 //
 
 #pragma once
+
 #include <vector>
 #include <string>
 
 namespace command {
 
     class Command {
+
+
+
     public:
         using StringVector=std::vector<std::string>;
         virtual ~Command() = default;

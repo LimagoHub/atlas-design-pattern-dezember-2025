@@ -1,10 +1,10 @@
 //
-// Created by JoachimWagner on 02.12.2025.
+// Created by JoachimWagner on 01.07.2025.
 //
 
 #pragma once
-#include <iostream>
 #include <memory>
+#include <iostream>
 #include <stack>
 #include "Command.h"
 namespace command {
@@ -31,8 +31,6 @@ namespace command {
                 command->undo();
                 redoStack.push(command);
             }
-
-            // begin macro peter
         }
         auto redo()->void {
             if(redoStack.empty()) {
@@ -44,6 +42,8 @@ namespace command {
                 undoStack.push(command);
             }
         }
+
+
     };
 
 } // command
