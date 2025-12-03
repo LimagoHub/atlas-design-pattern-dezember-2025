@@ -3,6 +3,8 @@
 #include <memory>
 #include "composite/KontoGruppe.h"
 #include "composite/Konto.h"
+#include "composite/visitor/PrintVisitor.h"
+
 using namespace composite;
 int main() {
     auto root = std::make_shared<KontoGruppe>("Root");
@@ -34,7 +36,9 @@ int main() {
         std::cout << knoten << std::endl;
     }
 */
-    root->ausgabe();
+    visitor::PrintVisitor printVisitor;
+
+    root->iterate(printVisitor);
 
     return 0;
 }

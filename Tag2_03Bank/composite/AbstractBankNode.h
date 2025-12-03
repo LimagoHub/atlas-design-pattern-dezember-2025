@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
+#include "visitor/konto_visitor.h"
 
 
 namespace composite {
@@ -18,7 +18,7 @@ namespace composite {
         using AbstractNodeShared = std::shared_ptr<AbstractBankNode>;
         using AbstractNodeWeak = std::weak_ptr<AbstractBankNode>;
         using Children = std::vector<AbstractNodeShared>;
-
+        using Visitor = visitor::konto_visitor;
 
 
         explicit AbstractBankNode(const std::string &name = "undef") : name_(name) {}
@@ -209,7 +209,16 @@ namespace composite {
 
         }
 
+        void iterate(Visitor &visitor) {
+            visitor.init();
+            for(auto &item: *this){
+                item.accept(visitor);
+            }
+            visitor.dispose();
+        }
 
+    protected:
+        virtual void accept(Visitor &visitor) = 0;
 
 
     private:
