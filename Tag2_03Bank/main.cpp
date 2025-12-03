@@ -29,6 +29,8 @@ int main() {
     e2->append(e2_1);
     e2->append(e2_2);
 
-    root->ausgabe();
+    for(auto & knoten: *root) {
+        std::cout << knoten << std::endl;
+    }
     return 0;
 }
