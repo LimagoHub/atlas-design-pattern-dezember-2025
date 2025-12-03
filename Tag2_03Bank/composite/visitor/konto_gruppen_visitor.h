@@ -24,5 +24,8 @@ namespace composite::visitor {
         void visit(Konto &konto) override {
             saldo += konto.getSaldo();
         }
+        double getSaldo() {
+            return saldo;
+        }
     };
 }
