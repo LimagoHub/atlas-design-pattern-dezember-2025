@@ -198,11 +198,14 @@ namespace composite {
         }
 
         virtual void ausgabe()  {
-            std::cout << *this << std::endl;
+            /*std::cout << *this << std::endl;
             for (auto &child: getChildren()) {
                 child->ausgabe();
             }
-
+            */
+            for(auto & knoten: *this) {
+                std::cout << knoten << std::endl;
+            }
 
         }
 

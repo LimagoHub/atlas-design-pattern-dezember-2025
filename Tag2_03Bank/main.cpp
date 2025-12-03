@@ -29,8 +29,12 @@ int main() {
     e2->append(e2_1);
     e2->append(e2_2);
 
+    /*
     for(auto & knoten: *root) {
         std::cout << knoten << std::endl;
     }
+*/
+    root->ausgabe();
+
     return 0;
 }
