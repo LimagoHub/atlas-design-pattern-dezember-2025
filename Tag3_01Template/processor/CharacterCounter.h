@@ -1,26 +1,19 @@
 //
-// Created by JoachimWagner on 03.12.2025.
+// Created by JoachimWagner on 01.07.2025.
 //
 
 #pragma once
-#include "AbstractFileProcessor.h"
-
+#include <iostream>
+#include "AbstractCounter.h"
 namespace processor {
 
-    class CharacterCounter: public AbstractFileProcessor {
-        int counter;
+    class CharacterCounter: public AbstractCounter{
     public:
-        void init() override {
-            counter = 0;
-        }
-
         void process(char c) override {
-            counter ++;
+            incrementCounter();
         }
 
-        void dispose() override {
-            std::cout << "Counter" << ": " << counter << std::endl;
-        }
+
     };
 
 } // processor

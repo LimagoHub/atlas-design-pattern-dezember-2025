@@ -1,25 +1,20 @@
 //
-// Created by JoachimWagner on 03.12.2025.
+// Created by JoachimWagner on 01.07.2025.
 //
 
 #pragma once
-#include "AbstractFileProcessor.h"
+#include <iostream>
+#include "AbstractCounter.h"
 namespace processor {
 
-    class LineCounter :public AbstractFileProcessor{
-        int counter;
+    class LineCounter: public AbstractCounter{
     public:
-        void init() override {
-            counter = 0;
-        }
-
         void process(char c) override {
-            if(c == '\n') counter ++;
+            if(c == '\n')
+                incrementCounter();
         }
 
-        void dispose() override {
-            std::cout << typeid(*this).name() << ": " << counter << std::endl;
-        }
+
     };
 
 } // processor
